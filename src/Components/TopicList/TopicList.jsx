@@ -1,10 +1,13 @@
 import './TopicList.css';
+import { useLoaderData, Link } from 'react-router-dom';
 
 export default function TopicList() {
-  const posts = [{ id: 0, title: 'Placeholder' }];
+  const posts = useLoaderData();
 
   const displayTopics = posts.map((post) => {
-    return <li key={post.id}>{post.title}</li>;
+    return <li key={post.id}>
+      <Link to={`/post/${post.id}`}> {post.title}</Link>
+      </li>;
   });
   return (
     <div className="TopicList">
