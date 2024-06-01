@@ -13,13 +13,20 @@ import TopicList from './Components/TopicList/TopicList.jsx';
 import Post from './Components/Post/Post.jsx';
 import postData from './data/post_data.json';
 
+const postLoader = ({ params }) => {
+  const post = postData.find((post) => post.id === parseInt(params.id));
+  if (post) {
+    return post;
+  }
+  return { title: 'Post Not Found' };
+};
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path='/topics' element={<TopicList />} loader={() => postData} />
-      <Route path='/post/:id' element={<Post />} />
+      <Route path='/post/:id' element={<Post />} loader={postLoader}/>
     </Route>
   )
 );

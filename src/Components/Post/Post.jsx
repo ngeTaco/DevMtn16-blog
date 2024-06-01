@@ -1,8 +1,8 @@
+import { useLoaderData } from 'react-router-dom';
 import './Post.css';
 
 export default function Post() {
-  const title = 'Title';
-  const content = 'Content';
+  const { title, content } = useLoaderData();
 
   return (
     <div className="Post">
